@@ -1,0 +1,33 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { getCollection, render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const notionPosts = await getCollection('notion')
+
+  return notionPosts.map((p) => ({
+    params: { slug: p.data.properties.slug },
+    props: { post: p },
+  }))
+}
+
+const { post } = Astro.props
+const { Content, headings } = await render(post)
+---
+
+<Layout>
+  <ul>
+    {
+      headings.map((h) => {
+        return (
+          <li>
+            <span>{h.depth}</span>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        )
+      })
+    }
+  </ul>
+  <h1>{post.data.properties.Name}</h1>
+  <Content />
+</Layout>
