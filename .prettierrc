@@ -1,0 +1,26 @@
+{
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.astro"
+      ],
+      "options": {
+        "semi": false
+      }
+    }
+  ],
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-astro-organize-imports"
+  ],
+  "singleQuote": true,
+  "trailingComma": "es5"
+}
